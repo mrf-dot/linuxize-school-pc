@@ -1,0 +1,1 @@
+# linuxize-school-pc
