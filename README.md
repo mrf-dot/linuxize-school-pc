@@ -17,7 +17,7 @@ Set-ExecutionPolicy Bypass -Scope CurrentUser
 iwr -useb https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/scoop-install.ps1 | iex
 ```
 ### Configure Windows Terminal
-1. Download my powershell startup script (p.ps1) to your powershell directory
+1. Download my powershell startup script (p.ps1) to your home directory
 ```powershell
 wget https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/powershell-startup.ps1 -O p.ps1
 ```
