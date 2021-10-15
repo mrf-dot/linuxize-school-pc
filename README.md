@@ -19,23 +19,6 @@ Set-ExecutionPolicy Bypass -Scope CurrentUser
 ```powershell
 iwr -useb https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/scoop-install.ps1 | iex
 ```
-4. Install Git with Scoop (we'll use MinGit instead of the regular Git package)
-```powershell
-scoop install mingit
-```
-5. Install the extras bucket to Scoop in order to get the packages we'll need to install
-```powershell
-scoop bucket add extras
-```
-6. Install the Visual C++ Redistributable, Wget, Windows Terminal, Starship, Neovim, and AutoHotKey with Scoop (in this order)
-```powershell
-scoop install vcredist2019
-scoop install wget
-scoop install windows-terminal
-scoop install starship
-scoop install neovim
-scoop install autohotkey
-```
 ### Configure Windows Terminal
 1. Download my powershell startup script (p.ps1) to your powershell directory
 ```powershell
