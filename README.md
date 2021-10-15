@@ -3,9 +3,6 @@
 This guide will require you to use Powershell. I'll guide you through the way though so don't worry if you don't have experience or aren't "Tech literate". Also as I've stated in the license just don't be stupid and don't lead the school to take action.
 ## General Steps
 ### Download Powershell
-1. Download [Powershell 7](https://github.com/PowerShell/PowerShell/releases/download/v7.1.4/PowerShell-7.1.4-win-x86.zip)
-2. Unzip Powershell into `C:\Users\your_username\Powershell`
-3. Once Powershell is unzipped navigate into the powershell directory and double click on `pwsh.exe`
 ### Install and configure scoop
 1. Change into your home directory
 ```powershell
@@ -22,7 +19,7 @@ iwr -useb https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/scoo
 ### Configure Windows Terminal
 1. Download my powershell startup script (p.ps1) to your powershell directory
 ```powershell
-wget https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/powershell-startup.ps1 -O Powershell\p.ps1
+wget https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/powershell-startup.ps1 -O p.ps1
 ```
 2. Download and install the FiraCode nerd font to your user fonts
 ```powershell
