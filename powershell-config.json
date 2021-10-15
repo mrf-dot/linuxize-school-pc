@@ -54,7 +54,7 @@
             },
             {
                 "colorScheme": "Campbell",
-                "commandline": "C:\\Users\\1433642\\scoop\\shims\\pwsh.exe  -NoExit -Command C:\\Users\\1433642\\p.ps1",
+                "commandline": "C:\\Users\\username\\scoop\\shims\\pwsh.exe  -NoExit -Command C:\\Users\\username\\p.ps1",
                 "font": 
                 {
                     "face": "FiraCode NF"
