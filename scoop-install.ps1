@@ -48,3 +48,6 @@ success 'Scoop was installed successfully!'
 Write-Output "Type 'scoop help' for instructions."
 
 $erroractionpreference = $old_erroractionpreference # Reset $erroractionpreference to original value
+scoop install mingit
+scoop bucket add extras
+scoop install vcredist2019 wget curl windows-terminal starship neovim neovide autohotkey
