@@ -1,5 +1,6 @@
 " Store this in ~\AppData\Local\nvim\init.vim
 " Imports my plugins
+cd C:\Users\username
 call plug#begin('C:\Users\username\AppData\Local\nvim\autoload\plugged')
     Plug 'scrooloose/NERDTree'
     Plug 'jiangmiao/auto-pairs'
@@ -18,10 +19,8 @@ set hidden
 set noruler
 set nobackup
 set nowritebackup
-set cmdheight=2
 set laststatus=2
 set relativenumber number
-set formatoptions-=o
 set splitbelow splitright
 " Copy paste to clipboard
 set clipboard+=unnamedplus
@@ -60,7 +59,6 @@ set mouse=a
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
 " Use `:Fold` to fold current buffer
