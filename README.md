@@ -21,10 +21,7 @@ iwr -useb https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/scoo
 ```powershell
 wget https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/powershell-startup.ps1 -O p.ps1
 ```
-2. Download and install the FiraCode nerd font to your user fonts
-```powershell
-wget https://github.com/mrf-dot/linuxize-school-pc/blob/main/FiraCode-NF.ttf?raw=true -O AppData\Local\Microsoft\Windows\Fonts
-```
+2. Download and install the FiraCode nerd font to your user fonts by downloading the ttf file and right clicking it. You will see a menu. click 'install user font'
 3. Download the windows terminal config to the windows terminal config directory
 ```powershell
 wget https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/powershell-config.json -O "AppData\Local\Microsoft\Windows Terminal\settings.json"
