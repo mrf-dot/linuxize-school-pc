@@ -6,10 +6,6 @@ $env:path += ";$env:userprofile\scoop\apps\python\current\Scripts"
 # Set aliases
 Set-Alias -Name java -Value "$env:userprofile\scoop\apps\openjdk\current\bin\java.exe" -Scope Global
 
-# Imports ps modules
-Import-Module -Name Terminal-Icons
-Import-Module -Name PSWriteWord
-
 # Edit important files
 function global:vc { nvim $env:userprofile\AppData\Local\nvim\init.vim }
 function global:pc { nvim $env:userprofile\Code\powershell\p.ps1 }
