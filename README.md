@@ -41,7 +41,20 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-schoo
 ```
 3. Replace all instances of "username" in init.vim to your username
 ```powershell
-((Get-Content -path $env:LocalAppData/nvim/init.vim -Raw) -replace 'username', "$env:username") | Set-Content -Path $env:LocalAppData/nvim/init.vim
+((Get-Content -path $env:LocalAppData/nvim/init.vim) -replace 'username', "$env:username") | Set-Content -Path $env:LocalAppData/nvim/init.vim
+```
+### Final preparations
+1. Enter the current version of powershell installed with scoop (You may get profile restriction errors. This is normal).
+```powershell
+pwsh
+```
+2. Allow for the execution of scripts such as the powershell startup script.
+```powershell
+Set-ExecutionPolicy Bypass -Scope CurrentUser
+```
+3. Open windows terminal (You should pin it to the taskbar so that you can find it easily later).
+```powershell
+wt
 ```
 ## Afterword
 Now your system is configured to be "advanced". Learn how to use [neovim](https://neovim.io/doc/user/) and [scoop](https://scoop.sh/) by reading their docs.
