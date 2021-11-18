@@ -3,7 +3,7 @@
 " Turns filetype plugin on
 	filetype plugin indent on
 " Imports my plugins
-call plug#begin('C:\Users\username\AppData\Local\nvim\autoload\plugged')
+call plug#begin(stdpath('config').'/autoload/plugged')
     Plug 'scrooloose/NERDTree'
     Plug 'jiangmiao/auto-pairs'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -78,7 +78,7 @@ syntax enable
 let g:rainbow_active = 1
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
-let g:coc_data_home = "C:/Users/username/AppData/Local/coc"
+let g:coc_data_home = stdpath('config').'/coc'
 
 " Adds extensions to the status bar
 	set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
