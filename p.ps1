@@ -1,6 +1,5 @@
 # Adds directories to path
 $env:path += ";$env:userprofile\node_modules\.bin"
-$env:path += ";$env:userprofile\Code\powershell"
 $env:path += ";$env:userprofile\scoop\apps\python\current\Scripts"
 
 # Set aliases
@@ -8,20 +7,10 @@ Set-Alias -Name java -Value "$env:userprofile\scoop\apps\openjdk\current\bin\jav
 
 # Edit important files
 function global:vc { nvim $env:userprofile\AppData\Local\nvim\init.vim }
-function global:pc { nvim $env:userprofile\Code\powershell\p.ps1 }
+function global:pc { nvim $env:userprofile\p.ps1 }
 function global:mpvc { nvim $env:userprofile\scoop\persist\mpv\portable_config\mpv.conf }
 
-# Calculate factorial numbers
-function global:Get-Factorial ($n) {
-    if ($n -eq 0) {
-        return 1
-    }
-    $fact = 1
-    1..$n | ForEach { $fact *= $_ }
-    return $fact
-}
-
-# compile documents with groff
+# Compile documents with groff
 function global:groff {
 	param (
 	$filename
