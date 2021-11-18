@@ -1,12 +1,50 @@
+# Adds directories to path
 $env:path += ";$env:userprofile\node_modules\.bin"
 $env:path += ";$env:userprofile\Code\powershell"
 $env:path += ";$env:userprofile\scoop\apps\python\current\Scripts"
+
+# Set aliases
 Set-Alias -Name java -Value "$env:userprofile\scoop\apps\openjdk\current\bin\java.exe" -Scope Global
+
+# Imports ps modules
+Import-Module -Name Terminal-Icons
+Import-Module -Name PSWriteWord
 
 # Edit important files
 function global:vc { nvim $env:userprofile\AppData\Local\nvim\init.vim }
 function global:pc { nvim $env:userprofile\Code\powershell\p.ps1 }
+function global:mpvc { nvim $env:userprofile\scoop\persist\mpv\portable_config\mpv.conf }
 
+# Calculate factorial numbers
+function global:Get-Factorial ($n) {
+    if ($n -eq 0) {
+        return 1
+    }
+    $fact = 1
+    1..$n | ForEach { $fact *= $_ }
+    return $fact
+}
+
+# compile documents with groff
+function global:groff {
+	param (
+	$filename
+	      )
+	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
+	msys2 -c "groff -ms -Tpdf $basefile.ms > $basefile.pdf"
+	Start-Process "$basefile.pdf"
+}
+
+# View manpages
+Remove-Alias -Name man -Scope Global
+function global:man {
+	param (
+	$manpage
+	      )
+	msys2 -c "man $manpage"
+}
+
+# Play music on the command line
 function global:music {
 	param (
 		$playlist
@@ -25,23 +63,61 @@ function global:jc {
 	java $basefile
 }
 
+# Fizzbuzz implementation in powershell
+function global:fizzbuzz {
+	for ( $i = 1; $i -lt 101; $i++ ) {
+		$FizzString = ""
+		$FizzString += ($i % 3 -eq 0) ? "Fizz" : ""
+		$FizzString += ($i % 5 -eq 0) ? "Buzz" : ""
+		Write-Output $($FizzString.equals("") ? $i : $FizzString)
+	}
+}
+
 # Search Youtube and return video url
 function global:syt {
 	param (
 		[Parameter(Mandatory = $true, Position = 0)]
 		[string] $query
 	)
+	$query = $query -replace '\s+', '+'
 	$GoogleApiKey = "AIzaSyARpjRn7-t39LyzGTSgoiPZcU8QVA7fi0I"
-	$searchUri = "https://www.googleapis.com/youtube/v3/search?q=`"$query`"&key=$GoogleApiKey&maxResults=20&part=snippet&type=video"
+	$searchUri = "https://www.googleapis.com/youtube/v3/search?q=$query&key=$GoogleApiKey&maxResults=20&part=snippet&type=video"
 	$response = Invoke-RestMethod -Uri $searchUri -Method Get
+	# Creates table of result number, video title, and channel
+	$tbl = New-Object System.Data.DataTable "Search Results"
+	$col0 = New-Object System.Data.DataColumn Result
+	$col1 = New-Object System.Data.DataColumn Title
+	$col2 = New-Object System.Data.DataColumn Channel
+	$tbl.columns.add($col0)
+	$tbl.columns.add($col1)
+	$tbl.columns.add($col2)
 	for ( $i = 1; $i -le $response.items.count; $i++ ) {
-		Write-Host "$i. $($response.items[$i-1].snippet.title)" -ForegroundColor Cyan
+		$row = $tbl.NewRow()
+		$row.Result = $i
+		$row.Title = [System.Net.WebUtility]::HtmlDecode($response.items[$i-1].snippet.title)
+		$row.Channel = [System.Net.WebUtility]::HtmlDecode($response.items[$i-1].snippet.channeltitle)
+		$tbl.rows.add($row)
 	}
-	$Selection = Read-Host "Selection"
-	if ($Selection -ge 0 -and $Selection -lt 21) {
-		return "https://youtube.com/watch?v=$($response.items[$selection - 1].id.videoId)"
-	}
+	$tbl | Format-Table | Out-Host
+	# Loops through number until input is correct
+	do {
+		try {
+			$isNum = $true
+			$Selection = Read-Host "Selection #"
+			if ($Selection) {
+				[int]$Selection = $Selection
+			} else {
+				return ""
+			}
+		}
+		catch {
+			$isNum = $false
+		}
+
+	} until ($Selection -ge 1 -and $Selection -le 20 -and $isNum)
+	return "https://youtube.com/watch?v=$($response.items[$selection - 1].id.videoId)"
 }
+
 # Download music from youtube to music directory
 function global:yaudio {
 	param (
@@ -72,7 +148,7 @@ function global:yt {
 			$search = $query
 		}
 		if ($search -and !($search.equals("exit"))) {
-			$selection = syt $search
+			$selection = $(syt $search)
 			if ($selection) {
 				mpv $selection
 			}
