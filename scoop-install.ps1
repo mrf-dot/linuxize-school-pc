@@ -50,8 +50,9 @@ Write-Output "Type 'scoop help' for instructions."
 $erroractionpreference = $old_erroractionpreference # Reset $erroractionpreference to original value
 scoop install mingit
 scoop bucket add extras
+scoop bucket add java
+scoop install openjdk
 scoop install aria2 
-scoop install wget
 scoop install curl
 scoop install windows-terminal
 scoop install neovim
@@ -61,3 +62,4 @@ scoop install figlet
 scoop install rainbow
 scoop install yt-dlp
 scoop install mpv
+scoop install youtube-dl
