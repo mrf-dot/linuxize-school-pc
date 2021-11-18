@@ -17,6 +17,9 @@ iwr -useb https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/scoo
 ```
 ### Configure Windows Terminal
 4. Download my powershell startup script (p.ps1) to your home directory
+```powershell
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/p.ps1" -Outfile "$env:userprofile\p.ps1"
+```
 5. Download and install the FiraCode to your user fonts by downloading the ttf file and right clicking it. You will see a menu. click 'install user font'
 6. Install vim-plug to use vim plugins like code completion and bracket matching
 ```powershell
@@ -24,6 +27,9 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
     ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
 ```
 7. Download my vim config (init.vim) to your ~/AppData/Local/nvim folder
+```powershell
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/init.vim" -Outfile "$env:localappdata\nvim\init.vim"
+```
 8. Replace all instances of "username" in init.vim to your username
 ```powershell
 ((Get-Content -path $env:LocalAppData/nvim/init.vim -Raw) -replace 'username', "$env:username") | Set-Content -Path $env:LocalAppData/nvim/init.vim
