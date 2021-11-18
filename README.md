@@ -17,25 +17,17 @@ Set-ExecutionPolicy Bypass -Scope CurrentUser
 iwr -useb https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/scoop-install.ps1 | iex
 ```
 ### Configure Windows Terminal
-1. Download my powershell startup script (p.ps1) to your home directory
+4. Download my powershell startup script (p.ps1) to your home directory
 ```powershell
 wget https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/powershell-startup.ps1 -O p.ps1
 ```
-2. Download and install the FiraCode nerd font to your user fonts by downloading the ttf file and right clicking it. You will see a menu. click 'install user font'
-3. Download the windows terminal config to the windows terminal config directory
-```powershell
-wget https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/powershell-config.json -O "AppData\Local\Microsoft\Windows Terminal\settings.json"
-```
-4. Replace all instances of the word "username" in my powershell config script to your username
-```powershell
-(Get-Content "AppData\Local\Microsoft\Windows Terminal\settings.json").replace('username', $env:username) | Set-Content "AppData\Local\Microsoft\Windows Terminal\settings.json"
-```
+5. Download and install the FiraCode nerd font to your user fonts by downloading the ttf file and right clicking it. You will see a menu. click 'install user font'
 ### Install bugn
-1. Download the bugn executable I compiled to your startup folder
+6. Download the bugn executable I compiled to your startup folder
 ```powershell
 wget https://github.com/mrf-dot/linuxize-school-pc/blob/main/bugn.exe?raw=true -O "AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\bugn.exe"
 ```
-2. Restart your computer for these changes to take effect
+7. Restart your computer for these changes to take effect
 ```powershell
 Restart-Computer
 ```
