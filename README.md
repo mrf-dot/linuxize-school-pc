@@ -39,10 +39,6 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
 ```powershell
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/init.vim" -Outfile "$env:localappdata\nvim\init.vim"
 ```
-3. Replace all instances of "username" in init.vim to your username
-```powershell
-((Get-Content -path $env:LocalAppData/nvim/init.vim) -replace 'username', "$env:username") | Set-Content -Path $env:LocalAppData/nvim/init.vim
-```
 ### Final preparations
 1. Enter the current version of powershell installed with scoop (You may get profile restriction errors. This is normal).
 ```powershell
