@@ -43,7 +43,7 @@ function global:jc {
 		$filename
 	)
 	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
-	Remove-Item "$basefile.class"
+	Remove-Item "$basefile.class" -ErrorAction Ignore
 	javac $filename
 	java $basefile
 }
