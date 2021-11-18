@@ -51,6 +51,7 @@ $erroractionpreference = $old_erroractionpreference # Reset $erroractionpreferen
 scoop install mingit
 scoop bucket add extras
 scoop bucket add java
+scoop install nodejs
 scoop install openjdk
 scoop install aria2 
 scoop install curl
