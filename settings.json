@@ -47,11 +47,13 @@
         "list": 
         [
             {
+                "acrylicOpacity": 0.22,
                 "backgroundImage": null,
                 "closeOnExit": "always",
-                "colorScheme": "Campbell",
+                "colorScheme": "Tango Dark",
                 "commandline": "%userprofile%\\scoop\\shims\\pwsh.exe -NoProfile -NoExit -Command %userprofile%\\p.ps1\"",
                 "cursorShape": "filledBox",
+                "experimental.retroTerminalEffect": false,
                 "font": 
                 {
                     "face": "Fira Code",
@@ -61,8 +63,10 @@
                 "hidden": false,
                 "intenseTextStyle": "none",
                 "name": "PowerShell Advanced",
+                "scrollbarState": "hidden",
                 "source": "Windows.Terminal.PowershellCore",
-                "startingDirectory": null
+                "startingDirectory": null,
+                "suppressApplicationTitle": false
             }
         ]
     },
