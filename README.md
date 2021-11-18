@@ -21,13 +21,23 @@ iwr -useb https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/scoo
 ```powershell
 wget https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/powershell-startup.ps1 -O p.ps1
 ```
-5. Download and install the FiraCode nerd font to your user fonts by downloading the ttf file and right clicking it. You will see a menu. click 'install user font'
+5. Download and install the FiraCode to your user fonts by downloading the ttf file and right clicking it. You will see a menu. click 'install user font'
+6. Install vim-plug to use vim plugins like code completion and bracket matching
+```powershell
+iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
+    ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
+```
+7. Download my vim config (init.vim) to your ~/AppData/Local/nvim folder
+8. Replace all instances of "username" in init.vim to your username
+```powershell
+((Get-Content -path $env:LocalAppData/nvim/init.vim -Raw) -replace 'username', "$env:username") | Set-Content -Path $env:LocalAppData/nvim/init.vim
+```
 ### Install bugn
-6. Download the bugn executable I compiled to your startup folder
+9. Download the bugn executable I compiled to your startup folder
 ```powershell
 wget https://github.com/mrf-dot/linuxize-school-pc/blob/main/bugn.exe?raw=true -O "AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\bugn.exe"
 ```
-7. Restart your computer for these changes to take effect
+10. Restart your computer for these changes to take effect
 ```powershell
 Restart-Computer
 ```
