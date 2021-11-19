@@ -37,6 +37,7 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
 ```
 2. Download my vim config (init.vim) to your ~/AppData/Local/nvim folder
 ```powershell
+New-Item $env:LocalAppData/nvim
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/init.vim" -Outfile "$env:localappdata\nvim\init.vim"
 ```
 ### Final preparations
