@@ -27,6 +27,7 @@ Start-Process $env:userprofile\Downloads\FiraCode-NF.ttf
 ```
 3. Download my windows terminal profile to the windows-terminal profile directory
 ```powershell
+mkdir "$env:LocalAppData\Microsoft\Windows Terminal"
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/settings.json" -OutFile "$env:LocalAppData\Microsoft\Windows Terminal\settings.json"  
 ```
 ### Configure Neovim
