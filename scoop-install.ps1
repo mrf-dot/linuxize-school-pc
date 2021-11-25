@@ -52,6 +52,7 @@ scoop install mingit
 scoop bucket add extras
 scoop bucket add java
 scoop install aria2
+scoop install ffmpeg
 scoop install nodejs
 scoop install openjdk
 scoop install curl
