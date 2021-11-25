@@ -51,12 +51,12 @@
                 "backgroundImage": null,
                 "closeOnExit": "always",
                 "colorScheme": "Tango Dark",
-                "commandline": "%userprofile%\\scoop\\shims\\pwsh.exe -NoProfile -NoExit -Command %userprofile%\\p.ps1\"",
+                "commandline": "%userprofile%\\scoop\\apps\\pwsh\\current\\pwsh.exe -NoProfile -NoExit -Command %userprofile%\\p.ps1\"",
                 "cursorShape": "filledBox",
                 "experimental.retroTerminalEffect": false,
                 "font": 
                 {
-                    "face": "FiraCode NF",
+                    "face": "Fira Code",
                     "size": 11
                 },
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
