@@ -19,6 +19,7 @@ iwr -useb https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/scoo
 ```powershell
 mkdir $env:userprofile\scoop\persist\mpv\portable_config
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/mpv.conf" -Outfile "$env:userprofile
+```
 ### Configure Windows Terminal
 1. Download my powershell startup script (p.ps1) to your home directory
 ```powershell
