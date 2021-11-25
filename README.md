@@ -15,10 +15,14 @@ Set-ExecutionPolicy Bypass -Scope CurrentUser
 ```powershell
 iwr -useb https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/scoop-install.ps1 | iex
 ```
+4. Install my mpv config
+```powershell
+mkdir $env:userprofile\scoop\persist\mpv\portable_config
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/mpv.conf" -Outfile "$env:userprofile
 ### Configure Windows Terminal
 1. Download my powershell startup script (p.ps1) to your home directory
 ```powershell
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/p.ps1" -Outfile "$env:userprofile\p.ps1"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/p.ps1" -Outfile "$env:userprofile\scoop\persist\mpv\portable_config\mpv.conf
 ```
 2. Download and install FiraCode to your user fonts by downloading the ttf file and starting it through powershell. You will see a button that says 'install'. Click that button to install the font to your user fonts.
 ```powershell
