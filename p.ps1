@@ -13,19 +13,19 @@ function global:mpvc { nvim $env:userprofile\scoop\persist\mpv\portable_config\m
 # Compile documents with groff
 function global:groff {
 	param (
-	$filename
-	      )
+		$filename
+	)
 	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
 	msys2 -c "groff -ms -Tpdf $basefile.ms > $basefile.pdf"
 	Start-Process "$basefile.pdf"
 }
 
 # View manpages
-Remove-Alias -Name man -Scope Global
+Remove-Alias -Name man -Scope Global -ErrorAction Ignore
 function global:man {
 	param (
-	$manpage
-	      )
+		$manpage
+	)
 	msys2 -c "man $manpage"
 }
 
@@ -34,7 +34,7 @@ function global:music {
 	param (
 		$playlist
 	)
-	mpv $env:userprofile\Music\$playlist --shuffle --no-audio-display
+	mpv $env:userprofile\Music\$playlist --shuffle --no-audio-display --no-resume-playback
 }
 
 # Compile java files
@@ -46,16 +46,6 @@ function global:jc {
 	Remove-Item "$basefile.class" -ErrorAction Ignore
 	javac $filename
 	java $basefile
-}
-
-# Fizzbuzz implementation in powershell
-function global:fizzbuzz {
-	for ( $i = 1; $i -lt 101; $i++ ) {
-		$FizzString = ""
-		$FizzString += ($i % 3 -eq 0) ? "Fizz" : ""
-		$FizzString += ($i % 5 -eq 0) ? "Buzz" : ""
-		Write-Output $($FizzString.equals("") ? $i : $FizzString)
-	}
 }
 
 # Search Youtube and return video url
@@ -79,8 +69,8 @@ function global:syt {
 	for ( $i = 1; $i -le $response.items.count; $i++ ) {
 		$row = $tbl.NewRow()
 		$row.Result = $i
-		$row.Title = [System.Net.WebUtility]::HtmlDecode($response.items[$i-1].snippet.title)
-		$row.Channel = [System.Net.WebUtility]::HtmlDecode($response.items[$i-1].snippet.channeltitle)
+		$row.Title = [System.Net.WebUtility]::HtmlDecode($response.items[$i - 1].snippet.title)
+		$row.Channel = [System.Net.WebUtility]::HtmlDecode($response.items[$i - 1].snippet.channeltitle)
 		$tbl.rows.add($row)
 	}
 	$tbl | Format-Table | Out-Host
@@ -91,25 +81,65 @@ function global:syt {
 			$Selection = Read-Host "Selection #"
 			if ($Selection) {
 				[int]$Selection = $Selection
-			} else {
+			}
+			else {
 				return ""
 			}
 		}
 		catch {
 			$isNum = $false
 		}
-
-	} until ($Selection -ge 1 -and $Selection -le 20 -and $isNum)
+	} until ($Selection -ge 1 -and $Selection -le $response.items.count -and $isNum)
 	return "https://youtube.com/watch?v=$($response.items[$selection - 1].id.videoId)"
+}
+
+function global:syp {
+	param (
+		[Parameter(Mandatory = $true, Position = 0)]
+		[string] $query
+	)
+	$query = $query -replace '\s+', '+'
+	$GoogleApiKey = "AIzaSyARpjRn7-t39LyzGTSgoiPZcU8QVA7fi0I"
+	$searchUri = "https://www.googleapis.com/youtube/v3/search?q=$query&key=$GoogleApiKey&maxResults=5&part=snippet&type=playlist"
+	$response = Invoke-RestMethod -Uri $searchUri -Method Get
+	# Creates table of result number, video title, and channel
+	$tbl = New-Object System.Data.DataTable "Search Results"
+	$col0 = New-Object System.Data.DataColumn Result
+	$col1 = New-Object System.Data.DataColumn Title
+	$tbl.columns.add($col0)
+	$tbl.columns.add($col1)
+	for ( $i = 1; $i -le $response.items.count; $i++ ) {
+		$row = $tbl.NewRow()
+		$row.Result = $i
+		$row.Title = [System.Net.WebUtility]::HtmlDecode($response.items[$i - 1].snippet.title)
+		$tbl.rows.add($row)
+	}
+	$tbl | Format-Table | Out-Host
+	# Loops through number until input is correct
+	do {
+		try {
+			$isNum = $true
+			$Selection = Read-Host "Selection #"
+			if ($Selection) {
+				[int]$Selection = $Selection
+			}
+			else {
+				return ""
+			}
+		}
+		catch {
+			$isNum = $false
+		}
+	} until ($Selection -ge 1 -and $Selection -le $response.items.count -and $isNum)
+	return "https://youtube.com/playlist?list=$($response.items[$selection - 1].id.playlistId)"
 }
 
 # Download music from youtube to music directory
 function global:yaudio {
 	param (
 		[string] $url,
-		[string] $playlist = "custom"
+		[string] $playlist
 	)
-
 	if ($url) {
 		yt-dlp $url -i --extract-audio --audio-format mp3 --audio-quality 0 -o $env:USERPROFILE/music/$playlist/"%(title)s.(ext)s"
 	}
@@ -121,9 +151,22 @@ function global:youtube {
 		[string] $url
 	)
 	if ($url) {
-		yt-dlp $url -o "$env:userprofile/Videos/%(title)s.%(ext)s"
+		yt-dlp $url -o "$env:userprofile/Videos/%(title)s.%(ext)s" --all-subs
 	}
 }
+
+function global:dya {
+	param (
+		[string] $query,
+		[string] $folder
+		)
+	yaudio $(syp $query) $folder
+}
+
+function global:dyt {
+	youtube $(syt)
+}
+
 # Watch youtube videos over command line
 function global:yt {
 	$search = ""
@@ -138,8 +181,11 @@ function global:yt {
 				mpv $selection
 			}
 		}
-	} while (!($search.equals("exit")))
+	} until ($search.equals("exit"))
 }
+
+# Scoop stuff
+Invoke-Expression (&scoop-search --hook)
 
 # Changes directory and displays greeting
 Set-Location $env:userprofile
