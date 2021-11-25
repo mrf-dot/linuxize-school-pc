@@ -65,3 +65,4 @@ scoop install yt-dlp
 scoop install mpv
 scoop install youtube-dl
 scoop install python
+scoop install scoop-search
