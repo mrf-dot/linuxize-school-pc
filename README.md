@@ -23,7 +23,7 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-schoo
 ### Configure Windows Terminal
 1. Download my powershell startup script (p.ps1) to your home directory
 ```powershell
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/p.ps1" -Outfile "$env:userprofile\scoop\persist\mpv\portable_config\mpv.conf
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/p.ps1" -Outfile "$env:userprofile\p.ps1"
 ```
 2. Download and install FiraCode to your user fonts by downloading the ttf file and starting it through powershell. You will see a button that says 'install'. Click that button to install the font to your user fonts.
 ```powershell
