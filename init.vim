@@ -1,17 +1,17 @@
 " Store this in ~\AppData\Local\nvim\init.vim
 
+" Sets leader character to space
+	let mapleader = " "
 " Turns filetype plugin on
 	filetype plugin indent on
 " Imports my plugins
 	call plug#begin(stdpath('config').'/autoload/plugged')
-	    Plug 'scrooloose/NERDTree'
-	    Plug 'jiangmiao/auto-pairs'
 	    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	    Plug 'preservim/tagbar'
 	    Plug 'vim-airline/vim-airline'
 	    Plug 'junegunn/goyo.vim'
 	    Plug 'luochen1990/rainbow'
 	    Plug 'lambdalisue/battery.vim'
+	    Plug 'qpkorr/vim-renamer'
 	call plug#end()
 " Sets vim defaults
 	set title
@@ -28,14 +28,13 @@
 	set clipboard+=unnamedplus
 " Enables autocompletion
 	set wildmode=longest,list,full
-" Spell-check set to leader o
-	map <leader>o :setlocal spell! spelllang=en_us<CR>
 " Turns off autocomment
 	autocmd FileType * setlocal formatoptions-=cro
-" Set goyo to leader f
-	map <leader>f :Goyo<CR>
-" Show all diagnostics
+" Set leader characters
 	map <leader>a :<C-u>CocList diagnostics<CR>
+	map <leader>g :Goyo<CR>
+	map <leader>o :setlocal spell! spelllang=en_us<CR>
+	map <leader>r :Rename<CR>
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
 	autocmd BufWritePre * %s/\s\+$//e
 	autocmd BufWritePre * %s/\n\+\%$//e
@@ -76,9 +75,6 @@
 " Syntax higlighting
 	syntax enable
 	let g:rainbow_active = 1
-" Nerd Tree shortcuts
-	nnoremap <C-t> :NERDTreeToggle<CR>
-	nnoremap <C-f> :NERDTreeFind<CR>
 " Adds extensions to the status bar
 	set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 	let g:airline#extensions#wordcount#filetypes = '\vasciidoc|help|mail|groff|markdown|markdown.pandoc|org|rst|tex|text'
@@ -96,8 +92,8 @@
 	autocmd FileType java imap _pf System.out.printf("z");<esc>Fzcw
 	autocmd FileType java imap _pe System.err.println("z");<esc>Fzcw
 	autocmd FileType java imap _f for (int i = 0; i < z; i++) {<esc>Fzcw
-	autocmd FileType java imap _t try {<CR>z} catch (Exception ex) {<CR>ex.printStackTrace();}<esc>3k0fzcw
-	autocmd FileType java imap _c public static final int<space>
+	autocmd FileType java imap _t try {<CR>z<CR>} catch (Exception ex) {<CR>ex.printStackTrace();<CR>}<esc>3k0fzcw
+	autocmd FileType java imap _c public static final int
 	autocmd FileType java imap _m System.currentTimeMillis()
-	autocmd FileType java imap _s try {<CR>Thread.sleep(z);} catch (Exception ex) {<CR>ex.printStackTrace();}<esc>3k0fzcw
+	autocmd FileType java imap _s try {<CR>Thread.sleep(z);<CR>} catch (Exception ex) {<CR>ex.printStackTrace();<CR>}<esc>3k0fzcw
 	autocmd FileType java imap _hi _pc_psvm_plHello, world<esc>G
