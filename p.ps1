@@ -184,9 +184,6 @@ function global:yt {
 	} until ($search.equals("exit"))
 }
 
-# Scoop stuff
-Invoke-Expression (&scoop-search --hook)
-
 # Changes directory and displays greeting
 Set-Location $env:userprofile
 figlet "PowerShell Advanced" | rainbow
