@@ -56,8 +56,6 @@
 	    call CocAction('doHover')
 	  endif
 	endfunction
-" Scroll through documentation
-	set mouse=a
 " Highlight symbol under cursor on CursorHold
 	autocmd CursorHold * silent call CocActionAsync('highlight')
 " Use `:Format` to format current buffer
