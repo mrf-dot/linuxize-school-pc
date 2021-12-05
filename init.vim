@@ -1,5 +1,5 @@
 " Sets leader character to space
-	let mapleader = " "
+	let mapleader = ' '
 " Imports my plugins
 	call plug#begin(stdpath('config').'/autoload/plugged')
 	    Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -8,18 +8,19 @@
 	    Plug 'luochen1990/rainbow'
 	    Plug 'lambdalisue/battery.vim'
 	    Plug 'qpkorr/vim-renamer'
-	    Plug 'fidian/hexmode'
+	    Plug 'tpope/vim-commentary'
 	call plug#end()
 " Sets vim defaults
-	set noshowmode
 	set encoding=utf-8
 	set hidden
 	set noruler
-	set nobackup
-	set nowritebackup
 	set relativenumber number
 	set splitbelow splitright
-" Copy paste to clipboard
+	set nobackup
+	set nowritebackup
+	set noshowmode
+	set noshowcmd
+" Yank to clipboard
 	set clipboard+=unnamedplus
 " Enables autocompletion
 	set wildmode=longest,list,full
@@ -28,7 +29,7 @@
 " Set leader characters
 	map <leader>a :<C-u>CocList diagnostics<CR>
 	map <leader>g :Goyo<CR>
-	map <leader>h :Hexmode<CR>
+	map <silent> <leader>h :nohlsearch<CR>
 	map <leader>o :setlocal spell! spelllang=en_us<CR>
 	map <leader>r :Rename<CR>
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
@@ -38,7 +39,7 @@
 " Allow for updated diagnostic messages
 	set updatetime=300
 " don't give |ins-completion-menu| messages.
-	set shortmess+=c
+	set shortmess+=cS
 " Set coc data home
 	let g:coc_data_home = stdpath('config').'/coc'
 " Use `[c` and `]c` to navigate diagnostics
@@ -56,8 +57,6 @@
 	    call CocAction('doHover')
 	  endif
 	endfunction
-" Highlight symbol under cursor on CursorHold
-	autocmd CursorHold * silent call CocActionAsync('highlight')
 " Use `:Format` to format current buffer
 	command! -nargs=0 Format :call CocAction('format')
 " Use `:Fold` to fold current buffer
@@ -70,8 +69,6 @@
 	let g:airline#extensions#whitespace#enabled = 0
 	let g:airline#extensions#wordcount#filetypes = '\vasciidoc|help|mail|groff|markdown|markdown.pandoc|org|rst|tex|text'
 	let g:airline#extensions#battery#enabled = 1
-	let g:battery#update_tabline = 1
-	let g:battery#update_statusline = 1
 " Sets file handling by file extension
 	autocmd BufNewFile,BufRead *.ms set filetype=groff
 " Java abbreviations
