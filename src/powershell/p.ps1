@@ -43,10 +43,22 @@ function global:jc {
 		$filename
 	)
 	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
-	Remove-Item "$basefile.class" -ErrorAction Ignore
-	javac $filename
-	java $basefile
+	$classpath = "../../../bin"
+	Remove-Item "$classpath/$basefile.class" -ErrorAction Ignore
+	javac -d $classpath $filename
+	java -cp $classpath $basefile
 }
+
+# Create a java project
+function global:mproj {
+	param (
+		$projectName
+	)
+	mkdir $projectName && Set-Location $projectName && New-Item README.md -Value "# $projectName" && New-Item LICENSE && New-Item .gitignore -value "bin/" && mkdir bin/ && mkdir src/main && mkdir src/test && mkdir src/test/resources && mkdir src/main/resources
+}
+
+# Define your google api key here
+$env:GoogleApiKey = "AIzaSyARpjRn7-t39LyzGTSgoiPZcU8QVA7fi0I"
 
 # Search Youtube and return video url
 function global:syt {
@@ -55,8 +67,7 @@ function global:syt {
 		[string] $query
 	)
 	$query = $query -replace '\s+', '+'
-	$GoogleApiKey = "AIzaSyARpjRn7-t39LyzGTSgoiPZcU8QVA7fi0I"
-	$searchUri = "https://www.googleapis.com/youtube/v3/search?q=$query&key=$GoogleApiKey&maxResults=20&part=snippet&type=video"
+	$searchUri = "https://www.googleapis.com/youtube/v3/search?q=$query&key=$env:GoogleApiKey&maxResults=20&part=snippet&type=video"
 	$response = Invoke-RestMethod -Uri $searchUri -Method Get
 	# Creates table of result number, video title, and channel
 	$tbl = New-Object System.Data.DataTable "Search Results"
@@ -99,8 +110,7 @@ function global:syp {
 		[string] $query
 	)
 	$query = $query -replace '\s+', '+'
-	$GoogleApiKey = "AIzaSyARpjRn7-t39LyzGTSgoiPZcU8QVA7fi0I"
-	$searchUri = "https://www.googleapis.com/youtube/v3/search?q=$query&key=$GoogleApiKey&maxResults=5&part=snippet&type=playlist"
+	$searchUri = "https://www.googleapis.com/youtube/v3/search?q=$query&key=$env:GoogleApiKey&maxResults=5&part=snippet&type=playlist"
 	$response = Invoke-RestMethod -Uri $searchUri -Method Get
 	# Creates table of result number, video title, and channel
 	$tbl = New-Object System.Data.DataTable "Search Results"
@@ -151,13 +161,15 @@ function global:youtube {
 		[string] $url
 	)
 	if ($url) {
-		yt-dlp $url -o "$env:userprofile/Videos/%(title)s.%(ext)s" --all-subs
+		yt-dlp $url -o "$env:userprofile/Videos/%(title)s.%(ext)s" --all-subs -f "bv[height<=?1080][fps<=?30]+ba"
 	}
 }
 
 function global:dya {
 	param (
+		[Parameter(Mandatory = $true, Position = 0)]
 		[string] $query,
+		[Parameter(Mandatory = $true, Position = 1)]
 		[string] $folder
 		)
 	yaudio $(syp $query) $folder
@@ -178,12 +190,8 @@ function global:yt {
 		if ($search -and !($search.equals("exit"))) {
 			$selection = $(syt $search)
 			if ($selection) {
-				mpv $selection
+				mpv $selection --no-terminal
 			}
 		}
 	} until ($search.equals("exit"))
 }
-
-# Changes directory and displays greeting
-Set-Location $env:userprofile
-figlet "PowerShell Advanced" | rainbow

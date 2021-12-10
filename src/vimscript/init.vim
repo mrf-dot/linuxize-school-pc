@@ -39,7 +39,7 @@
 " Allow for updated diagnostic messages
 	set updatetime=300
 " don't give |ins-completion-menu| messages.
-	set shortmess+=cS
+	set shortmess+=acsS
 " Set coc data home
 	let g:coc_data_home = stdpath('config').'/coc'
 " Use `[c` and `]c` to navigate diagnostics
@@ -75,13 +75,13 @@
 	autocmd FileType java imap <silent> _xc <C-R>=expand('%:t:r')<CR>
 	autocmd FileType java imap _pc public class _xc {<CR>}<esc>O
  	autocmd FileType java imap _psvm public static void main(String[] args) {<CR>}<esc>O
-	autocmd FileType java imap _po System.out.print("z");<esc>Fzcw
-	autocmd FileType java imap _pl System.out.println("z");<esc>Fzcw
-	autocmd FileType java imap _pf System.out.printf("z");<esc>Fzcw
-	autocmd FileType java imap _pe System.err.println("z");<esc>Fzcw
+	autocmd FileType java imap _po System.out.print(z);<esc>Fzcw
+	autocmd FileType java imap _pl System.out.println(z);<esc>Fzcw
+	autocmd FileType java imap _pf System.out.printf(z);<esc>Fzcw
+	autocmd FileType java imap _pe System.err.println(z);<esc>Fzcw
 	autocmd FileType java imap _f for (int i = 0; i < z; i++) {<esc>Fzcw
 	autocmd FileType java imap _t try {<CR>z<CR>} catch (Exception ex) {<CR>ex.printStackTrace();<CR>}<esc>3k0fzcw
 	autocmd FileType java imap _c public static final int
 	autocmd FileType java imap _m System.currentTimeMillis()
 	autocmd FileType java imap _s try {<CR>Thread.sleep(z);<CR>} catch (Exception ex) {<CR>ex.printStackTrace();<CR>}<esc>3k0fzcw
-	autocmd FileType java imap _hi _pc_psvm_plHello, world!<esc>G
+	autocmd FileType java imap _hi _pc_psvm_pl"Hello, world!"<esc>G
