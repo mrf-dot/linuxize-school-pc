@@ -38,7 +38,7 @@ function global:music {
 }
 
 # Compile java files
-function global:jc {
+function global:jp {
 	param (
 		$filename
 	)
@@ -49,12 +49,23 @@ function global:jc {
 	java -cp $classpath $basefile
 }
 
+# Compile java files in a project
+function global:jc {
+	param (
+		$filename
+	)
+	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
+	Remove-Item "$basefile.class" -ErrorAction Ignore
+	javac $filename
+	java $basefile
+}
+
 # Create a java project
 function global:mproj {
 	param (
 		$projectName
 	)
-	mkdir $projectName && Set-Location $projectName && New-Item README.md -Value "# $projectName" && New-Item LICENSE && New-Item .gitignore -value "bin/" && mkdir bin/ && mkdir src/main && mkdir src/test && mkdir src/test/resources && mkdir src/main/resources
+	mkdir $projectName && Set-Location $projectName && New-Item README.md -Value "# $projectName" && New-Item LICENSE && New-Item .gitignore -value "bin/" && mkdir bin/ && mkdir src/main/resources && mkdir src/test/resources
 }
 
 # Define your google api key here
