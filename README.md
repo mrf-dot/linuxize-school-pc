@@ -46,10 +46,9 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
 mkdir $env:LocalAppData/nvim
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/src/vimscript/init.vim" -Outfile "$env:localappdata\nvim\init.vim"
 ```
-3. Install all of the vim plugins from their repositories and the java lsp
+3. Install all of the vim plugins from their repositories
 ```powershell
 nvim -c "PlugInstall | quitall"
-nvim -c "CocInstall coc-java | quitall"
 ```
 ### Final preparations
 1. Enter the current version of powershell installed with scoop (You may get profile restriction errors. This is normal).
