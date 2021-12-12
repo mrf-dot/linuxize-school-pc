@@ -60,7 +60,7 @@ function global:jc {
 	java $basefile
 }
 
-# Create a java project
+# Create a code project
 function global:mproj {
 	param (
 		$projectName
