@@ -63,9 +63,10 @@
                 "hidden": false,
                 "intenseTextStyle": "none",
                 "name": "PowerShell Advanced",
+                "padding": "8",
                 "scrollbarState": "hidden",
                 "source": "Windows.Terminal.PowershellCore",
-                "startingDirectory": null,
+                "startingDirectory": "%USERPROFILE%",
                 "suppressApplicationTitle": false
             }
         ]
