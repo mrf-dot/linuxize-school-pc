@@ -10,6 +10,13 @@ function global:vc { nvim $env:userprofile\AppData\Local\nvim\init.vim }
 function global:pc { nvim $env:userprofile\p.ps1 }
 function global:mpvc { nvim $env:userprofile\scoop\persist\mpv\portable_config\mpv.conf }
 
+# Enter the gpa program without changing directories
+function global:gpa {
+	Set-Location "$env:userprofile\Code\personal\src\main\python"
+	python gpa_calc.py
+	Set-Location -
+}
+
 # Compile documents with groff
 function global:groff {
 	param (
@@ -206,3 +213,6 @@ function global:yt {
 		}
 	} until ($search.equals("exit"))
 }
+
+# Welcome message
+figlet "PowerShell Advanced" | rainbow
