@@ -1,4 +1,4 @@
-# Linuxize Your School PC
+# Linuxize Your PC
 
 ## Preface
 
@@ -17,7 +17,7 @@ Set-Location $env:userprofile
 ```
 
 2. Set the execution policy in PowerShell to allow you to run scripts from the
-git repository. If a prompt appears, type `A` and press enter
+git repository. If a prompt appears, type `A` and press enter.
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope CurrentUser
@@ -33,7 +33,6 @@ iwr -useb https://raw.githubusercontent.com/mrf-dot/linuxize-school-pc/main/src/
 button that says `install`. Click that button to install the font to your user fonts.
 
 ```powershell
-Invoke-WebRequest "https://github.com/mrf-dot/linuxize-school-pc/blob/main/bin/FiraCode-NF.ttf?raw=true" -OutFile $env:userprofile/Downloads/FiraCode-NF.ttf
 Start-Process $env:userprofile\Downloads\FiraCode-NF.ttf
 ```
 
@@ -44,7 +43,7 @@ pwsh -NoProfile
 ```
 
 6. Allow for the execution of scripts such as the PowerShell startup script.
-If a prompt appears, type `A` and press enter
+If a prompt appears, type `A` and press enter.
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope CurrentUser
@@ -78,6 +77,7 @@ you don't need.
 6. Wait for the program to download
 7. Double click on the executable file
 8. Wait for chrome to extract from the executable.
+
 Using scoop, the chrome installation process is this.
 
 ```powershell
@@ -86,7 +86,8 @@ scoop install googlechrome
 
 This is an example of how a quite annoying and insecure
 process (how do you know that the site you downloaded
-from is the real site and not a fishing/malware site?)
+from is the real site and not a fishing/malware site?) can be simplified by
+using a package manager.
 
 In order to find software with scoop type
 
@@ -151,7 +152,7 @@ you will be given up to 20 results. Enter the number of the result you wish to
 view and the video will launch (because school computers are slow it may take a
 few seconds for the video to load.
 
-### External software installed by this guide
+## External software installed by this guide
 
 The following software is installed by default by the scoop-install script:
 mingit
@@ -195,7 +196,7 @@ than they currently are without diminishing returns.
 
 ### Is installing this illegal/does this contain viruses?
 
-Short answer: no
+Short answer: no.
 Long answer: This project does not contain any proprietary or copyrighted code.
 In my personal opinion code and algorithms should not even count as intellectual
 property but that's a story for another time. This installation guide and the
