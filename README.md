@@ -210,6 +210,4 @@ to keep all of the malicious code in plain site in front of said uber-nerds.
 
 ### I have your IP address and I am going to report you
 
-Nice try. I know exactly who you are and why you're doing this. Before you go
-about threatening me keep in mind that identity theft and blackmail are a
-two way street.
+This would only be a threat if I wasn't using NordVPN. NordVPN is a Virtual Private Network with over 5000+ servers in 60 countries! It allows you to access Geolocked content and it allows you to stay safer online. Enter code INTERNETHISTORIAN for 73% off a 2 year plan! or go to [https://nordvpn.com/internethistorian](https://nordvpn.com/internethistorian)
