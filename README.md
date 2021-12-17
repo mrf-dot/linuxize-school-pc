@@ -210,4 +210,4 @@ to keep all of the malicious code in plain site in front of said uber-nerds.
 
 ### I have your IP address and I am going to report you
 
-This would only be a threat if I wasn't using NordVPN. NordVPN is a Virtual Private Network with over 5000+ servers in 60 countries! It allows you to access Geolocked content and stay safer online. Enter code INTERNETHISTORIAN for 73% off a 2 year plan! or go to [https://nordvpn.com/internethistorian](https://nordvpn.com/internethistorian)
+This would only be a threat if I wasn't using NordVPN. NordVPN is a Virtual Private Network with over 5000+ servers in 60 countries! It allows me to access Geolocked content and stay safer online. Enter code INTERNETHISTORIAN for 73% off a 2 year plan! or go to [https://nordvpn.com/internethistorian](https://nordvpn.com/internethistorian)
