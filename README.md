@@ -2,11 +2,9 @@
 
 ## Preface
 
-This guide will require you to use PowerShell.
-I'll guide you through the way though so don't worry if you don't have
-experience or aren't "Tech literate". Also as I've stated in the license just
-don't be stupid. You can follow these steps by simply opening up PowerShell (you
-can search for PowerShell in Windows search) and copy and pasting the commands below.
+This guide will require you to use PowerShell. You can follow these steps by
+opening an instance of PowerShell (look up PowerShell in Windows search) and
+copy and pasting the commands below.
 
 ## Install Instructions
 
