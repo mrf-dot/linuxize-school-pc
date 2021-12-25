@@ -10,6 +10,9 @@ function global:vc { nvim $env:userprofile\AppData\Local\nvim\init.vim }
 function global:pc { nvim $env:userprofile\p.ps1 }
 function global:mpvc { nvim $env:userprofile\scoop\persist\mpv\portable_config\mpv.conf }
 
+# View command history
+Remove-Alias -Name h -Scope Global -ErrorAction Ignore
+function global:h { Get-Content (Get-PSReadlineOption).HistorySavePath | less }
 # Enter the gpa program without changing directories
 function global:gpa {
 	Set-Location "$env:userprofile\Code\personal\src\main\python"
@@ -17,15 +20,16 @@ function global:gpa {
 	Set-Location -
 }
 
-# Compile documents with groff
-function global:groff {
+# Compile ms documents with groff
+function global:ms {
 	param (
 		$filename
 	)
 	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
 	msys2 -c "groff -ms -Tpdf $basefile.ms > $basefile.pdf"
-	Start-Process "$basefile.pdf"
+        Start-Process "$basefile.pdf"
 }
+
 
 # View manpages
 Remove-Alias -Name man -Scope Global -ErrorAction Ignore
@@ -44,7 +48,7 @@ function global:music {
 	mpv $env:userprofile\Music\$playlist --shuffle --no-audio-display --no-resume-playback
 }
 
-# Compile java files
+# Compile Java files in a project
 function global:jp {
 	param (
 		$filename
@@ -56,7 +60,31 @@ function global:jp {
 	java -cp $classpath $basefile
 }
 
-# Compile java files in a project
+# Compile C files in a project
+function global:cc {
+	param (
+		$filename
+	)
+	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
+	$classpath = "../../../bin"
+	Remove-Item "$classpath/$basefile.exe" -ErrorAction Ignore
+        gcc "$basefile.c" -o "$classpath/$basefile.exe"
+        pwsh -NoProfile -c "$classpath/$basefile"
+}
+
+# Compile C++ files in a project
+function global:ccpp {
+	param (
+		$filename
+	)
+	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
+	$classpath = "../../../bin"
+	Remove-Item "$classpath/$basefile.exe" -ErrorAction Ignore
+        g++ "$basefile.cpp" -o "$classpath/$basefile.exe"
+        pwsh -NoProfile -c "$classpath/$basefile"
+}
+
+# Compile java files
 function global:jc {
 	param (
 		$filename
@@ -212,6 +240,17 @@ function global:yt {
 			}
 		}
 	} until ($search.equals("exit"))
+}
+
+function global:code2pdf {
+	param (
+		$filename
+	)
+	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
+        nvim  -c  "TOhtml | write! $basefile.tmp.html | quitall!" $filename
+        wkhtmltopdf "$basefile.tmp.html" "$basefile.pdf"
+        Remove-Item "$basefile.tmp.html"
+        Start-Process "$basefile.pdf"
 }
 
 # Welcome message
