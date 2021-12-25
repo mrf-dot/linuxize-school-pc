@@ -69,6 +69,7 @@ scoop install mpv
 scoop install youtube-dl
 scoop install python
 scoop install scoop-search
+scoop install wkhtmltopdf
 
 # Install mpv config
 mkdir $env:userprofile\scoop\persist\mpv\portable_config
