@@ -165,6 +165,18 @@ videos' name, channel, and a number reference.
 8. The video exits when finished or when the client exits the video.
 9. The client is again prompted to enter a query and the process starts again.
 
+### Convert Code to PDF
+
+In the PowerShell startup script (`p.ps1`), there is a function called
+`code2pdf`. This function allows you to convert any plaintext file (text files,
+source code, markdown, etc) into a PDF. The PDF will look exactly as it does
+when you open it in Neovim. To convert source code into a PDF, enter this
+command into PowerShell.
+
+```powershell
+code2pdf File.ext
+```
+
 ### AutoHotKey Remaps
 
 Inside the `/src/ahk/` directory of the repository, there is a script called
@@ -200,6 +212,7 @@ order of installation):
 - youtube-dl
 - python
 - scoop-search
+- wkhtmltopdf
 
 You can view the homepages of these programs by using the scoop home command.
 
