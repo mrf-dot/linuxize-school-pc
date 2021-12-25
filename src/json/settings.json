@@ -1,13 +1,13 @@
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
+    "actions":
     [
         {
             "command": "unbound",
             "keys": "ctrl+c"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "copy",
                 "singleLine": false
@@ -22,7 +22,7 @@
             "keys": "ctrl+shift+v"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "splitPane",
                 "split": "auto",
@@ -38,13 +38,13 @@
     "disableAnimations": true,
     "experimental.rendering.forceFullRepaint": false,
     "experimental.rendering.software": false,
-    "profiles": 
+    "profiles":
     {
-        "defaults": 
+        "defaults":
         {
             "colorScheme": "One Half Dark"
         },
-        "list": 
+        "list":
         [
             {
                 "acrylicOpacity": 0.22,
@@ -54,7 +54,7 @@
                 "commandline": "%userprofile%\\scoop\\apps\\pwsh\\current\\pwsh.exe -NoProfile -NoExit -Command %userprofile%\\p.ps1\"",
                 "cursorShape": "filledBox",
                 "experimental.retroTerminalEffect": false,
-                "font": 
+                "font":
                 {
                     "face": "FiraCode NF",
                     "size": 11
@@ -68,10 +68,24 @@
                 "source": "Windows.Terminal.PowershellCore",
                 "startingDirectory": "%USERPROFILE%",
                 "suppressApplicationTitle": false
+            },
+            {
+                "backgroundImage": null,
+                "colorScheme": "Tango Dark",
+                "commandline": "%userprofile%\\scoop\\apps\\neovim\\current\\bin\\nvim.exe",
+                "font":
+                {
+                    "face": "FiraCode NF"
+                },
+                "guid": "{aa9f4ac8-0e4c-425f-9110-9f0cbc626a09}",
+                "icon": "%userprofile%\\scoop\\apps\\neovim\\0.6.0\\share\\icons\\hicolor\\128x128\\apps\\nvim.png",
+                "name": "Neovim",
+                "scrollbarState": "hidden",
+                "startingDirectory": "%USERPROFILE%"
             }
         ]
     },
-    "schemes": 
+    "schemes":
     [
         {
             "background": "#0C0C0C",
