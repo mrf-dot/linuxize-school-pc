@@ -177,6 +177,75 @@ command into PowerShell.
 code2pdf File.ext
 ```
 
+### Code Projects
+
+#### Creating Projects
+A code project is a directory that is formatted in a professional way to allow
+you to work on various source code files that comprise a single git repository.
+Inside the PowerShell startup script there are various functions that may be
+used to create and compile code within a project. A code project typically is
+comprised of various directories for code testing, releases, and binaries.
+These directories can be created automatically with the `mproj` command. To
+create a code project enter this command.
+
+```powershell
+mproj ProjectName
+```
+
+This creates the following directory structure.
+
+```
+ProjectName
+|   .gitignore
+|   LICENSE
+|   README.md
+|
++---bin
+\---src
+    +---main
+    |   \---resources
+    \---test
+        \---resources
+```
+
+You must separate your code by coding language. For example if you were writing
+Java code in your project the source file would either have to be in
+`ProjectName/src/main/java/` or `ProjectName/src/test/java/`.
+
+#### Compile Java
+
+To compile and run a Java class file within the project you may use the `jp`
+command.
+
+```powershell
+jp File.java
+```
+
+#### Compile C and C++
+Support for compiling C and C++ code requires you to install GCC and G++. You
+can do this with Scoop by running this command.
+
+```powershell
+scoop install mingw-nuwen
+```
+
+To compile and run a C source code file run the `cc` command.
+
+```powershell
+cc File.c
+```
+
+To compile and run a C++ source code file run the `ccpp` command.
+
+```powershell
+ccpp File.cpp
+```
+### FiraCode Nerd Font
+
+The font `FiraCode` is installed by the scoop-install script. FiraCode allows
+for the display of nerd characters and coding ligatures. To learn about
+FiraCode you can visit the [FiraCode homepage](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode).
+
 ### AutoHotKey Remaps
 
 Inside the `/src/ahk/` directory of the repository, there is a script called
