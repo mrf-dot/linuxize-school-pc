@@ -94,4 +94,4 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mrf-dot/linuxize-schoo
 nvim -c "PlugInstall | quitall"
 
 # Download FiraCode NF
-Invoke-WebRequest "https://github.com/mrf-dot/linuxize-school-pc/blob/main/bin/FiraCode-NF.ttf?raw=true" -OutFile $env:userprofile/Downloads/FiraCode-NF.ttf
+Invoke-WebRequest "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Windows%20Compatible.ttf?raw=true" -OutFile "$env:userprofile/Downloads/FiraCode-NF.ttf"
