@@ -100,7 +100,7 @@ function global:mproj {
 	param (
 		$projectName
 	)
-	mkdir $projectName && Set-Location $projectName && New-Item README.md -Value "# $projectName" && New-Item LICENSE && New-Item .gitignore -value "bin/" && mkdir bin/ && mkdir src/main/resources && mkdir src/test/resources
+	mkdir $projectName && Set-Location $projectName && New-Item README.md -Value "# $projectName" && New-Item LICENSE && New-Item .gitignore -value "bin/" && mkdir bin/ && mkdir src/main/resources && mkdir src/test/resources && git init
 }
 
 # Define your google api key here
