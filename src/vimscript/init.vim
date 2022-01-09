@@ -7,6 +7,7 @@
 	Plug 'qpkorr/vim-renamer'
 	Plug 'tpope/vim-commentary'
 	Plug 'vimwiki/vimwiki'
+	Plug 'chrisbra/unicode.vim'
 	call plug#end()
 " Buffer behavior
 	set hidden
@@ -29,7 +30,6 @@
 	autocmd FileType * setlocal formatoptions-=cro
 " Set leader characters
 	nmap <silent> <leader>a :CocList diagnostics<CR>
-	nmap <silent> <leader>c :exe 'edit '.stdpath('config').'/init.vim'<CR>
 	nmap <silent> <leader>e :Lex<CR>
 	nmap <silent> <leader>g :Goyo \| set linebreak<CR>
 	nmap <silent> <leader>h :nohlsearch<CR>
@@ -40,12 +40,17 @@
 	nmap <DOWN> <C-w>j
 	nmap <UP> <C-w>k
 	nmap <RIGHT> <C-w>l
+" Add unicode support to ga
+	nmap ga <Plug>(UnicodeGA)
 " Allow for updated diagnostic messages
 	set updatetime=300
 " Give more concise messages
 	set shortmess+=acs
-" Set coc data home
+" Set plugin home directories
 	let g:coc_data_home = stdpath('config').'/coc'
+	let g:vimwiki_list = [{
+				\ 'path': $userprofile.'\wiki\text',
+				\ 'path_html': $userprofile.'\wiki\html',}]
 " K shows coc diagnostics as well as vim help
 	nnoremap <silent> K :call <SID>show_documentation()<CR>
 	function! s:show_documentation() abort
@@ -77,7 +82,8 @@ augroup END
 augroup Prose
 	autocmd!
 	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
-	autocmd BufRead,BufNewFile *.txt,*.md,*.ms,*.me,*.mom,*.man set textwidth=79
+	autocmd BufRead,BufNewFile *.md,*.wiki set textwidth=79
+	autocmd BufRead,BufNewFile *.md,*.wiki set nowrap
 augroup END
 
 augroup JavaShortcuts

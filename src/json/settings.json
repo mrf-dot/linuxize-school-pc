@@ -61,7 +61,7 @@
                 },
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
-                "intenseTextStyle": "none",
+                "intenseTextStyle": "all",
                 "name": "PowerShell Advanced",
                 "padding": "8",
                 "scrollbarState": "hidden",
@@ -72,14 +72,14 @@
             {
                 "backgroundImage": null,
                 "colorScheme": "Tango Dark",
-                "commandline": "%userprofile%\\scoop\\apps\\neovim\\current\\bin\\nvim.exe",
+                "commandline": "%userprofile%\\scoop\\apps\\neovim\\current\\bin\\nvim.exe -c \"VimwikiIndex\"\t",
                 "font":
                 {
                     "face": "FiraCode NF"
                 },
                 "guid": "{aa9f4ac8-0e4c-425f-9110-9f0cbc626a09}",
                 "icon": "%userprofile%\\scoop\\apps\\neovim\\0.6.0\\share\\icons\\hicolor\\128x128\\apps\\nvim.png",
-                "name": "Neovim",
+                "name": "Wiki",
                 "scrollbarState": "hidden",
                 "startingDirectory": "%USERPROFILE%"
             }
@@ -89,7 +89,7 @@
     [
         {
             "background": "#0C0C0C",
-            "black": "#0C0C0C",
+            "black": "#E6E6E6",
             "blue": "#0037DA",
             "brightBlack": "#767676",
             "brightBlue": "#3B78FF",
@@ -297,6 +297,7 @@
     ],
     "showTabsInTitlebar": true,
     "tabSwitcherMode": "inOrder",
+    "tabWidthMode": "equal",
     "theme": "system",
     "windowingBehavior": "useNew"
 }

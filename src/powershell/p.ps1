@@ -1,4 +1,5 @@
 # Adds directories to path
+$env:path += ";$env:userprofile\scoop\apps\openjdk\current\bin"
 $env:path += ";$env:userprofile\node_modules\.bin"
 $env:path += ";$env:userprofile\scoop\apps\python\current\Scripts"
 
@@ -20,6 +21,22 @@ function global:gpa {
 	Set-Location -
 }
 
+# Show all 256ansi colors
+# from https://duffney.io/usingansiescapesequencespowershell/
+function global:colors {
+	$esc=$([char]27)
+	echo "`n$esc[1;4m256-Color Foreground & Background Charts$esc[0m"
+	foreach ($fgbg in 38,48) {  # foreground/background switch
+	  foreach ($color in 0..255) {  # color range
+	    #Display the colors
+	    $field = "$color".PadLeft(4)  # pad the chart boxes with spaces
+	    Write-Host -NoNewLine "$esc[$fgbg;5;${color}m$field $esc[0m"
+	    #Display 6 colors per line
+	    if ( (($color+1)%6) -eq 4 ) { echo "`r" }
+	  }
+	  echo `n
+	}
+}
 # Compile ms documents with groff
 function global:ms {
 	param (
@@ -55,6 +72,7 @@ function global:jp {
 	)
 	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
 	$classpath = "../../../bin"
+	mkdir $classpath -ErrorAction Ignore
 	Remove-Item "$classpath/$basefile.class" -ErrorAction Ignore
 	javac -d $classpath $filename
 	java -cp $classpath $basefile
@@ -67,6 +85,7 @@ function global:cc {
 	)
 	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
 	$classpath = "../../../bin"
+	mkdir $classpath -ErrorAction Ignore
 	Remove-Item "$classpath/$basefile.exe" -ErrorAction Ignore
         gcc "$basefile.c" -o "$classpath/$basefile.exe"
         pwsh -NoProfile -c "$classpath/$basefile"
@@ -79,6 +98,7 @@ function global:ccpp {
 	)
 	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
 	$classpath = "../../../bin"
+	mkdir $classpath -ErrorAction Ignore
 	Remove-Item "$classpath/$basefile.exe" -ErrorAction Ignore
         g++ "$basefile.cpp" -o "$classpath/$basefile.exe"
         pwsh -NoProfile -c "$classpath/$basefile"
@@ -252,6 +272,3 @@ function global:code2pdf {
         Remove-Item "$basefile.tmp.html"
         Start-Process "$basefile.pdf"
 }
-
-# Welcome message
-figlet "PowerShell Advanced" | rainbow
