@@ -16,13 +16,15 @@
 	set splitbelow splitright
 " Don't backup files
 	set nobackup nowritebackup
-" Unclutter statusbar
+" Unclutter the UI
 	set noshowmode
 	set noshowcmd
-	set laststatus=0
+	let g:netrw_banner=0
 " Yank to clipboard
 	set clipboard+=unnamedplus
 " Enables autocompletion
+	set path+=**
+	set wildmenu
 	set wildmode=longest,list,full
 " Replace all is aliased to S
 	nmap S :%s//g<Left><Left>
@@ -89,16 +91,43 @@ augroup END
 augroup JavaShortcuts
 	autocmd!
 	autocmd FileType java imap <silent> _xc <C-R>=expand('%:t:r')<CR>
-	autocmd FileType java imap _pc public class _xc {<CR>}<esc>O
- 	autocmd FileType java imap _psvm public static void main(String[] args) {<CR>}<esc>O
-	autocmd FileType java imap _po System.out.print(z);<esc>Fzcw
-	autocmd FileType java imap _pl System.out.println(z);<esc>Fzcw
-	autocmd FileType java imap _pf System.out.printf(z);<esc>Fzcw
-	autocmd FileType java imap _pe System.err.println(z);<esc>Fzcw
-	autocmd FileType java imap _f for (int i = 0; i < z; i++) {<esc>Fzcw
-	autocmd FileType java imap _t try {<CR>z<CR>} catch (Exception ex) {<CR>ex.printStackTrace();<CR>}<esc>3k0fzcw
+	autocmd FileType java imap _pc public class _xc {<CR>}<ESC>O
+ 	autocmd FileType java imap _psvm public static void main(String[] args) {<CR>}<ESC>O
+	autocmd FileType java imap _po System.out.print(z);<ESC>Fzcw
+	autocmd FileType java imap _pl System.out.println(z);<ESC>Fzcw
+	autocmd FileType java imap _pf System.out.printf(z);<ESC>Fzcw
+	autocmd FileType java imap _pe System.err.println(z);<ESC>Fzcw
+	autocmd FileType java imap _f for (int i = 0; i < z; i++) {<ESC>Fzcw
+	autocmd FileType java imap _t try {
+				\<CR>z
+				\<CR>} catch (Exception ex) {
+				\<CR>ex.printStackTrace();
+				\<CR>}<ESC>3k0fzcw
 	autocmd FileType java imap _c public static final int
 	autocmd FileType java imap _m System.currentTimeMillis()
-	autocmd FileType java imap _s try {<CR>Thread.sleep(z);<CR>} catch (Exception ex) {<CR>ex.printStackTrace();<CR>}<esc>3k0fzcw
-	autocmd FileType java imap _hi _pc_psvm_pl"Hello, world!"<esc>G
+	autocmd FileType java imap _s _tThread.sleep(z);<ESC>Fzcw
+	autocmd FileType java imap _hi _pc_psvm_pl"Hello, world!"<ESC>G
+augroup END
+
+augroup HtmlShortcuts
+	autocmd!
+	autocmd Filetype html imap _html <!DOCTYPE html>
+				\<CR><html lang="en">
+				\<CR><head>
+				\<CR><meta charset="UTF-8">
+				\<CR><meta name="dESCription" content="">
+				\<CR><meta name="keywords" content="">
+				\<CR><meta name="author" content="">
+				\<CR><meta name="viewport" content="width=device-width, initial-scale=1.0">
+				\<CR><title>z</title>
+				\<CR></head>
+				\<CR><body>
+				\<CR></body>
+				\<CR></html><ESC>4k0fzcw
+	autocmd FileType html imap _a <a href="z"></a><ESC>Fzcw
+	autocmd FileType html imap _b <b>z</b><ESC>Fzcw
+	autocmd Filetype html imap _c <!-- z --><ESC>Fzcw
+	autocmd FileType html imap _i <i>z</i><ESC>Fzcw
+	autocmd FileType html imap _l <li>z</li><ESC>Fzcw
+	autocmd FileType html imap _p <p>z</p><ESC>Fzcw
 augroup END
