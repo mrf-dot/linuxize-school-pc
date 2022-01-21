@@ -37,16 +37,18 @@ function global:colors {
 	  echo `n
 	}
 }
+
 # Compile ms documents with groff
-function global:ms {
+function global:groff {
 	param (
 		$filename
 	)
 	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
-	msys2 -c "groff -ms -Tpdf $basefile.ms > $basefile.pdf"
+	$filename = [System.IO.Path]::GetFileName($filename)
+	Remove-Item "$basefile.pdf" -ErrorAction Ignore
+	msys2 -c "tr -d '\015' < $filename > tmp.$filename && grog -Tpdf tmp.$filename --run > $basefile.pdf && rm tmp.$filename"
         Start-Process "$basefile.pdf"
 }
-
 
 # View manpages
 Remove-Alias -Name man -Scope Global -ErrorAction Ignore
@@ -217,7 +219,7 @@ function global:yaudio {
 		[string] $playlist
 	)
 	if ($url) {
-		yt-dlp $url -i --extract-audio --audio-format mp3 --audio-quality 0 -o $env:USERPROFILE/music/$playlist/"%(title)s.(ext)s"
+		yt-dlp $url -i --restrict-filenames --extract-audio --audio-format mp3 --audio-quality 0 -o $env:USERPROFILE/music/$playlist/"%(title)s.(ext)s"
 	}
 }
 
@@ -227,7 +229,7 @@ function global:youtube {
 		[string] $url
 	)
 	if ($url) {
-		yt-dlp $url -o "$env:userprofile/Videos/%(title)s.%(ext)s" --all-subs -f "bv[height<=?1080][fps<=?30]+ba"
+		yt-dlp $url --restrict-filenames -o "$env:userprofile/Videos/%(title)s.%(ext)s" --all-subs -f "bv[height<=?1080][fps<=?30]+ba"
 	}
 }
 
@@ -262,13 +264,31 @@ function global:yt {
 	} until ($search.equals("exit"))
 }
 
+# Convert any text to a formatted pdf
 function global:code2pdf {
 	param (
 		$filename
 	)
 	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
-        nvim  -c  "TOhtml | write! $basefile.tmp.html | quitall!" $filename
+        nvim -c  "TOhtml | write! $basefile.tmp.html | quitall!" $filename
         wkhtmltopdf "$basefile.tmp.html" "$basefile.pdf"
         Remove-Item "$basefile.tmp.html"
         Start-Process "$basefile.pdf"
+}
+
+# ls with human readable file sizes
+function global:Format-FileSize {
+    Param (
+    [int64]$size
+    )
+    If     ($size -gt 1TB) {[string]::Format("{0:0.00} TB", $size / 1TB)}
+    ElseIf ($size -gt 1GB) {[string]::Format("{0:0.00} GB", $size / 1GB)}
+    ElseIf ($size -gt 1MB) {[string]::Format("{0:0.00} MB", $size / 1MB)}
+    ElseIf ($size -gt 1KB) {[string]::Format("{0:0.00} kB", $size / 1KB)}
+    ElseIf ($size -gt 1)   {[string]::Format("{0:0.00} B", $size)}
+    Else                   {""}
+}
+
+function global:lh {
+	Get-ChildItem | Select-Object Name, @{Name="Size";Expression={Format-FileSize($_.Length)}}
 }
