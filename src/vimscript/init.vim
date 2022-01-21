@@ -4,13 +4,13 @@
 	call plug#begin(stdpath('config').'/autoload/plugged')
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'junegunn/goyo.vim'
+	Plug 'ap/vim-css-color'
 	Plug 'qpkorr/vim-renamer'
 	Plug 'tpope/vim-commentary'
 	Plug 'vimwiki/vimwiki'
 	Plug 'chrisbra/unicode.vim'
 	call plug#end()
 " Buffer behavior
-	set hidden
 	set relativenumber number
 	set signcolumn=number
 	set splitbelow splitright
@@ -28,8 +28,6 @@
 	set wildmode=longest,list,full
 " Replace all is aliased to S
 	nmap S :%s//g<Left><Left>
-" Turns off autocomment
-	autocmd FileType * setlocal formatoptions-=cro
 " Set leader characters
 	nmap <silent> <leader>a :CocList diagnostics<CR>
 	nmap <silent> <leader>e :Lex<CR>
@@ -115,7 +113,7 @@ augroup HtmlShortcuts
 				\<CR><html lang="en">
 				\<CR><head>
 				\<CR><meta charset="UTF-8">
-				\<CR><meta name="dESCription" content="">
+				\<CR><meta name="description" content="">
 				\<CR><meta name="keywords" content="">
 				\<CR><meta name="author" content="">
 				\<CR><meta name="viewport" content="width=device-width, initial-scale=1.0">
