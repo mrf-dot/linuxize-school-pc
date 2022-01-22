@@ -246,6 +246,34 @@ The font `FiraCode` is installed by the scoop-install script. FiraCode allows
 for the display of nerd characters and coding ligatures. To learn about
 FiraCode you can visit the [FiraCode homepage](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode).
 
+### Compile Documents with Groff
+
+The PowerShell profile script has functions to compile groff documents.
+However, groff is not installed by default in the scoop-install script due to
+its time to install. You may install groff by entering this command into
+PowerShell.
+
+```powershell
+scoop install msys2
+msys2 -c "yes | pacman -S groff man"
+```
+
+You may compile any groff document (ms, mom, man, etc) by using this command.
+
+```powershell
+groff File.ext
+```
+
+This command will compile the document and open it in your default PDF viewer.
+Once you install groff you can learn how to use groff by entering these man
+pages (you can view a man page by entering `man manpage` into PowerShell.
+
+- groff
+- groff_ms
+- groff_char
+- eqn
+- tbl
+
 ### AutoHotKey Remaps
 
 Inside the `/src/ahk/` directory of the repository, there is a script called
