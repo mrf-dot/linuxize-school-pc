@@ -12,8 +12,7 @@ function global:pc { nvim $env:userprofile\p.ps1 }
 function global:mpvc { nvim $env:userprofile\scoop\persist\mpv\portable_config\mpv.conf }
 
 # View command history
-Remove-Alias -Name h -Scope Global -ErrorAction Ignore
-function global:h { Get-Content (Get-PSReadlineOption).HistorySavePath | less }
+function global:hist { Get-Content (Get-PSReadlineOption).HistorySavePath | less }
 # Enter the gpa program without changing directories
 function global:gpa {
 	Set-Location "$env:userprofile\Code\personal\src\main\python"
@@ -51,8 +50,7 @@ function global:groff {
 }
 
 # View manpages
-Remove-Alias -Name man -Scope Global -ErrorAction Ignore
-function global:man {
+function global:m {
 	param (
 		$manpage
 	)
@@ -64,7 +62,7 @@ function global:music {
 	param (
 		$playlist
 	)
-	mpv $env:userprofile\Music\$playlist --shuffle --no-audio-display --no-resume-playback
+	mpv $env:userprofile\Music\$playlist --shuffle --no-video --no-resume-playback
 }
 
 # Compile Java files in a project
@@ -122,7 +120,16 @@ function global:mproj {
 	param (
 		$projectName
 	)
-	mkdir $projectName && Set-Location $projectName && New-Item README.md -Value "# $projectName" && New-Item LICENSE && New-Item .gitignore -value "bin/" && mkdir bin/ && mkdir src/main/resources && mkdir src/test/resources && git init
+	if (mkdir $projectName) {
+		Set-Location $projectName
+		New-Item README.md -Value "# $projectName"
+		New-Item LICENSE
+		New-Item .gitignore -value "bin/"
+		mkdir bin/
+		mkdir src/main/resources
+		mkdir src/test/resources
+		git init
+	}
 }
 
 # Define your google api key here
@@ -276,19 +283,7 @@ function global:code2pdf {
         Start-Process "$basefile.pdf"
 }
 
-# ls with human readable file sizes
-function global:Format-FileSize {
-    Param (
-    [int64]$size
-    )
-    If     ($size -gt 1TB) {[string]::Format("{0:0.00} TB", $size / 1TB)}
-    ElseIf ($size -gt 1GB) {[string]::Format("{0:0.00} GB", $size / 1GB)}
-    ElseIf ($size -gt 1MB) {[string]::Format("{0:0.00} MB", $size / 1MB)}
-    ElseIf ($size -gt 1KB) {[string]::Format("{0:0.00} kB", $size / 1KB)}
-    ElseIf ($size -gt 1)   {[string]::Format("{0:0.00} B", $size)}
-    Else                   {""}
-}
-
-function global:lh {
-	Get-ChildItem | Select-Object Name, @{Name="Size";Expression={Format-FileSize($_.Length)}}
+# Displays the Greek alphabet
+function global:greek {
+	Get-Content $env:userprofile/Documents/greek_alphabet.txt
 }
