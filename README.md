@@ -54,6 +54,134 @@ Set-ExecutionPolicy Bypass -Scope CurrentUser
 wt
 ```
 
+## What You Need to Know
+
+This is a cheat sheet that enables you to fully utilize the functions given to
+you in the **Linuxize PC** guide. In this cheat sheet, anything between
+angle brackets (`<` and `>`) is a placeholder. Further down in the
+documentation commands are explained more in depth.
+
+### Basic Shell Commands
+
+1. `mv <oldname> <newname>` (move/rename files)
+2. `rm <filename>` (delete files)
+3. `ls` (list the files in a directory)
+4. `cd <directory>` (change your current working directory)
+
+### Compile & Run Files
+
+These commands must be run in a code project. Thus, if you wish to
+compile a Java file you must place it in `<ProjectName>\src\main\java\` or
+`<ProjectName>\src\test\java\`.
+1. `mproj <ProjectName>` (Create a code project)
+2. `cc <filename>` (Compile and run C files)
+3. `ccpp <filename>` (Compile and run C++ files)
+4. `jp <filename>` (Compile and run Java files)
+
+### Editing Files
+
+1. `nvim -c "Tutor"` (Learn how to use Neovim)
+2. `nvim <filename>` (Edit a file)
+
+### Install Software
+
+1. `scoop-search <software>` (Check if software is available)
+2. `scoop install <software>` (Install software and add it to the path)
+3. `scoop uninstall <software>` (Uninstall software and remove it from the path)
+4. `scoop list` (Display a list of all installed software)
+
+### Miscellaneous Commands
+
+1. `yt` (Watch YouTube videos)
+2. `code2pdf <filename>` (Create a syntax highlighted PDF)
+3. `colors` (Display the color codes for all ANSI colors)
+4. `music <playlist>` (Play all the music from a folder in your `Music` directory)
+
+### Java Shortcuts
+
+The following are shortcuts that make programming in Java faster. Note that the
+file must end with the extension `.java` for shortcuts to work. To use the
+shortcuts simply type them out in Neovim insert mode (ie to create a for loop
+go into insert mode and type `_f`).
+
+```java
+// _xc
+<ClassName>
+// _pc
+public class <ClassName> {
+
+}
+// _psvm
+public static void main(String[] args) {
+
+}
+// _po
+System.out.print();
+// _pl
+System.out.println();
+// _pf
+System.out.printf();
+// _pe
+System.err.println();
+// _f
+for (int i = 0; i < ; i++) {
+// _t
+try {
+
+} catch (Exception ex) {
+	ex.printStackTrace();
+}
+// _c
+public static final int
+// _m
+System.currentTimeMillis()
+// _s
+try {
+	Thread.sleep();
+} catch (Exception ex) {
+	ex.printStackTrace();
+}
+// _hi
+public class <ClassName> {
+	public static void main(String[] args) {
+		System.out.println("Hello, world!");
+	}
+}
+```
+
+### HTML Shortcuts
+
+The following are shortcuts for coding HTML files (webpages). Note that the
+file must end with `.html` for the shortcuts to work.
+```html
+<!-- _html -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="author" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<!-- _a -->
+<a href=""></a>
+<!-- _b -->
+<b></b>
+<!-- _c -->
+<!-- -->
+<!-- _i -->
+<i></i>
+<!-- _l -->
+<li></li>
+<!-- _p -->
+<p></p>
+```
+
 ## Features
 
 ### Scoop Package Manager
@@ -92,14 +220,14 @@ using a package manager.
 In order to find software with Scoop type
 
 ```powershell
-scoop-search software
+scoop-search <software>
 ```
 
 to find out if Scoop has a version of that
 software available. If it does, enter this command.
 
 ```powershell
-scoop install software
+scoop install <software>
 ```
 
 To learn more about Scoop, visit the [Scoop](https://scoop.sh/) docs.
@@ -132,7 +260,7 @@ run Java class files. To compile and run a Java file enter this command into
 PowerShell.
 
 ```powershell
-jc File.java
+jc <filename>
 ```
 
 ### PowerShell YouTube
@@ -174,7 +302,7 @@ when you open it in Neovim. To convert source code into a PDF, enter this
 command into PowerShell.
 
 ```powershell
-code2pdf File.ext
+code2pdf <filename>
 ```
 
 ### Code Projects
@@ -189,13 +317,13 @@ These directories can be created automatically with the `mproj` command. To
 create a code project enter this command.
 
 ```powershell
-mproj ProjectName
+mproj <ProjectName>
 ```
 
 This creates the following directory structure.
 
 ```
-ProjectName
+<ProjectName>
 |   .gitignore
 |   LICENSE
 |   README.md
@@ -218,7 +346,7 @@ To compile and run a Java class file within the project you may use the `jp`
 command.
 
 ```powershell
-jp File.java
+jp <filename>
 ```
 
 #### Compile C and C++
@@ -232,13 +360,13 @@ scoop install mingw-nuwen
 To compile and run a C source code file run the `cc` command.
 
 ```powershell
-cc File.c
+cc <filename>
 ```
 
 To compile and run a C++ source code file run the `ccpp` command.
 
 ```powershell
-ccpp File.cpp
+ccpp <filename>
 ```
 ### FiraCode Nerd Font
 
@@ -261,7 +389,7 @@ msys2 -c "yes | pacman -S groff man"
 You may compile any groff document (ms, mom, man, etc) by using this command.
 
 ```powershell
-groff File.ext
+groff <filename>
 ```
 
 This command will compile the document and open it in your default PDF viewer.
@@ -314,7 +442,7 @@ order of installation):
 You can view the homepages of these programs by using the scoop home command.
 
 ```powershell
-scoop home software
+scoop home <software>
 ```
 
 ## Q&A
