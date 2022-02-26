@@ -24,7 +24,6 @@
 	set clipboard+=unnamedplus
 " Enables autocompletion
 	set path+=**
-	set wildmenu
 	set wildmode=longest,list,full
 " Replace all is aliased to S
 	nmap S :%s//g<Left><Left>
@@ -69,6 +68,8 @@
 	command! -nargs=0 Format :call CocAction('format')
 " use `:OR` for organize import of current buffer
 	command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+" Install lsps by default
+	let g:coc_global_extensions=['coc-java', 'coc-pyright', 'coc-json']
 
 augroup DeleteWhitespace
 	autocmd!
