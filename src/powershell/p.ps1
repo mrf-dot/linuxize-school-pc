@@ -1,3 +1,17 @@
+# Turn off syntax highlighting
+Set-PSReadLineOption -Colors @{
+	Comment=$Host.UI.RawUI.ForegroundColor
+	Keyword=$Host.UI.RawUI.ForegroundColor
+	String=$Host.UI.RawUI.ForegroundColor
+	Operator=$Host.UI.RawUI.ForegroundColor
+	Variable=$Host.UI.RawUI.ForegroundColor
+	Command=$Host.UI.RawUI.ForegroundColor
+	Parameter=$Host.UI.RawUI.ForegroundColor
+	Type=$Host.UI.RawUI.ForegroundColor
+	Number=$Host.UI.RawUI.ForegroundColor
+	Member=$Host.UI.RawUI.ForegroundColor
+}
+
 # Adds directories to path
 $env:path += ";$env:userprofile\scoop\apps\openjdk\current\bin"
 $env:path += ";$env:userprofile\node_modules\.bin"
@@ -46,7 +60,7 @@ function global:groff {
 	$filename = [System.IO.Path]::GetFileName($filename)
 	Remove-Item "$basefile.pdf" -ErrorAction Ignore
 	msys2 -c "tr -d '\015' < $filename > tmp.$filename && grog -Tpdf tmp.$filename --run > $basefile.pdf && rm tmp.$filename"
-        Start-Process "$basefile.pdf"
+	Start-Process "$basefile.pdf"
 }
 
 # View manpages
@@ -87,7 +101,7 @@ function global:cc {
 	$classpath = "../../../bin"
 	mkdir $classpath -ErrorAction Ignore
 	Remove-Item "$classpath/$basefile.exe" -ErrorAction Ignore
-        gcc "$basefile.c" -o "$classpath/$basefile.exe"
+        gcc "$basefile.c" -Og -o "$classpath/$basefile.exe"
         pwsh -NoProfile -c "$classpath/$basefile"
 }
 
@@ -277,8 +291,8 @@ function global:code2pdf {
 		$filename
 	)
 	$basefile = [System.IO.Path]::GetFileNameWithoutExtension($filename)
-        nvim -c  "TOhtml | write! $basefile.tmp.html | quitall!" $filename
-        wkhtmltopdf "$basefile.tmp.html" "$basefile.pdf"
+        nvim --headless -c "TOhtml | write! $basefile.tmp.html | quitall!" $filename
+        wkhtmltopdf -q "$basefile.tmp.html" "$basefile.pdf"
         Remove-Item "$basefile.tmp.html"
         Start-Process "$basefile.pdf"
 }
