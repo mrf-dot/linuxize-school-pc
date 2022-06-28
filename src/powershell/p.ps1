@@ -147,7 +147,7 @@ function global:mproj {
 }
 
 # Define your google api key here
-$env:GoogleApiKey = "AIzaSyARpjRn7-t39LyzGTSgoiPZcU8QVA7fi0I"
+$env:GoogleApiKey = "AIzaSyAr9WbWmgDQ4EkMBS4AsWj9ikkKODNZs78"
 
 # Search Youtube and return video url
 function global:syt {
@@ -295,9 +295,4 @@ function global:code2pdf {
         wkhtmltopdf -q "$basefile.tmp.html" "$basefile.pdf"
         Remove-Item "$basefile.tmp.html"
         Start-Process "$basefile.pdf"
-}
-
-# Displays the Greek alphabet
-function global:greek {
-	Get-Content $env:userprofile/Documents/greek_alphabet.txt
 }
